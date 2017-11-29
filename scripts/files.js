@@ -26,6 +26,10 @@ function Files(root) {
 		await k.files.archive.commit();
 	}
 
+	this.version = async function() {
+		k.version = await k.files.archive.readFile('/VERSION', {timeout: 2000});
+	}
+
 	this.drag = function(bool) {
       	if (bool) {
         	$('body').addClass('drag')
