@@ -14,6 +14,7 @@ function Ntain() {
     	await this.files.archive.getInfo().then(function (archive) {
 			k.is_owner = archive.isOwner;
 			k.files.setup_owner();
+			k.updater.check();
 		});
   	}
 

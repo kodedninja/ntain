@@ -95,3 +95,9 @@ span.drop {
 span.version {
 	font-size: 13px;
 }
+
+.update-link {
+	color: #ACFCD9;
+	float: right;
+	margin-right: 16px;
+}
