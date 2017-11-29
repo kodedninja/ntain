@@ -1,5 +1,5 @@
 # ntain
-(ko)__ntain__ is a peer-to-peer file sharing application based on [Beaker](https://beakerbrowser.com/).
+(co)__ntain__ is a peer-to-peer file sharing application based on [Beaker](https://beakerbrowser.com/).
 
 ## Setup
 - Open ```dat://ntain-kodedninja.hashbase.io``` in Beaker.
