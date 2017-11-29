@@ -1,6 +1,6 @@
 function Ntain() {
 	this.version = "0.0.0";
-	this.files = new Files('/files');
+	this.files = new Files();
 	this.updater = new Updater();
 
 	this.init = function() {

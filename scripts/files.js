@@ -1,18 +1,29 @@
 function Files(root) {
 	var t = this;
 	this.archive = new DatArchive(window.location.toString());
-	this.root = '/';
-	if (root) this.root = root;
 
 	this.show_files = async function() {
 		$('#file-list').empty();
 		var files = await t.archive.readdir('/files', {recursive: true});
 		files.forEach(async function(file) {
 			var stats = await t.archive.stat('/files/' + file);
-			var elem = $('<div class="file">'+file+'</div>');
+			var elem = $('<div class="file"></div>');
+			var name = $('<span class="file-name">'+file+'</span>').appendTo(elem);
 			var download = $('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '" class="download-link">Download</a>').appendTo(elem);
+			if (k.is_owner) {
+				var del = $('<a href="#" class="delete-link" data-target="'+file+'">Delete</a>').click(function(e) {
+					e.preventDefault();
+					k.files.delete_file($(this).data('target'));
+					$(this).closest('.file').remove();
+				}).appendTo(elem);
+			}
 			$('#file-list').append(elem);
 		});
+	}
+
+	this.delete_file = async function(filename) {
+		await k.files.archive.unlink('/files/' + filename);
+		await k.files.archive.commit();
 	}
 
 	this.drag = function(bool) {

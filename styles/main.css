@@ -48,8 +48,17 @@ a {
 	display: inline-block;
 }
 
-.download-link {
+.file-name {
 	display: block;
+	margin-bottom: 20px;
+}
+
+.download-link {
+	float: left;
+}
+
+.delete-link {
+	float: right;
 }
 
 .wrap {
