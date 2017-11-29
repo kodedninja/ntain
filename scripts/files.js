@@ -53,10 +53,15 @@ function Files(root) {
 		k.files.drag(false);
   	}
 
-	var body = document.querySelectorAll('body')[0];
-	body.addEventListener('dragover',this.drag_over,false);
-    body.addEventListener('dragleave',this.drag_leave,false);
-    body.addEventListener('drop',this.drop,false);
+	this.setup_owner = function() {
+		if (k.is_owner) {
+			console.log("owner");
+			var body = document.querySelectorAll('body')[0];
+			body.addEventListener('dragover',this.drag_over,false);
+			body.addEventListener('dragleave',this.drag_leave,false);
+			body.addEventListener('drop',this.drop,false);
+		}
+	}
 
 	return this;
 }
