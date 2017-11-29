@@ -1,5 +1,4 @@
 function Updater() {
-
 	this.check = async function() {
 		if (k.is_owner) {
 			var main = new DatArchive('dat://ntain-kodedninja.hashbase.io');
@@ -22,7 +21,13 @@ function Updater() {
 		var header = $('header');
 		$('<a href="#" class="update-link">update available</a>').click(function(e) {
 			e.preventDefault();
+			k.updater.update();
 		}).appendTo(header);
+	}
+
+	this.update = function() {
+		// todo
+		$('.update-link').remove();
 	}
 
 	return this;
