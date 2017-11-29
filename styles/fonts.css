@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'input_mono_regular';
+    src: url('../media/fonts/input_mono_regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'input_mono_medium';
+    src: url('../media/fonts/input_mono_medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'input_mono_thin';
+    src: url('../media/fonts/input_mono_thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_mono_regular';
+    src: url('../media/fonts/RobotoMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_mono_medium';
+    src: url('../media/fonts/RobotoMono-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

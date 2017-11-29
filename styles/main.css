@@ -1,0 +1,74 @@
+body {
+	font-family: 'roboto_mono_regular';
+	background: #fff;
+	padding: 0;
+	margin: 0;
+}
+
+body.drag {
+	background: #ff00ff;
+}
+
+header {
+	padding-bottom: 40px;
+}
+
+a {
+	color: #000;
+}
+
+.top {
+	position: fixed;
+	top: 0;
+	background: #fff;
+	width: 100%;
+	height: 40px;
+	z-index: 10;
+}
+
+.bottom {
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	width: 100%;
+	height: 40px;
+	z-index: 10;
+}
+
+#file-list {
+	display: inline-block;
+}
+
+.file {
+	padding: 20px;
+	width: 160px;
+	height: 160px;
+	margin: 0px 40px 40px 0px;
+	background: #eee;
+	display: inline-block;
+}
+
+.download-link {
+	display: block;
+}
+
+.wrap {
+	padding: 40px;
+	background: #fff;
+}
+
+span.light {
+	color: #bcbcbc;
+}
+
+span.lighter {
+	color: #ddd;
+}
+
+span.motto {
+	margin-left: 40px;
+}
+
+label.light {
+	color: #bcbcbc;
+}
