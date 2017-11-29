@@ -6,6 +6,8 @@ function Ntain() {
 	this.init = function() {
 		this.setup_owner();
 		this.files.show_files();
+
+		$('.version').text(this.version);
 	}
 
 	this.setup_owner = async function() {

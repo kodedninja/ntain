@@ -68,6 +68,7 @@ function Files(root) {
 		if (k.is_owner) {
 			console.log("owner");
 			var body = document.querySelectorAll('body')[0];
+			$(body).addClass('owner');
 			body.addEventListener('dragover',this.drag_over,false);
 			body.addEventListener('dragleave',this.drag_leave,false);
 			body.addEventListener('drop',this.drop,false);

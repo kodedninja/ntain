@@ -70,7 +70,8 @@ a {
 	background: #fff;
 }
 
-span.light {
+span.light,
+label.light {
 	color: #bcbcbc;
 }
 
@@ -82,6 +83,15 @@ span.motto {
 	margin-left: 40px;
 }
 
-label.light {
-	color: #bcbcbc;
+span.drop {
+	display: none;
+	float: right;
+}
+
+.owner span.drop {
+	display: inline;
+}
+
+span.version {
+	font-size: 13px;
 }
