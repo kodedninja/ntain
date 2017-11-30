@@ -1,0 +1,5 @@
+Welcome to ntain!
+
+This is a placeholder file and you can delete it.
+
+Drop any files into ntain to make them public.
