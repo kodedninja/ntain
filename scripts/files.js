@@ -7,18 +7,20 @@ function Files(root) {
 		var files = await t.archive.readdir('/files', {recursive: true});
 		files.forEach(async function(file) {
 			var stats = await t.archive.stat('/files/' + file);
-			var elem = $('<div class="file"></div>');
-			var name = $('<span class="file-name">'+file+'</span>').appendTo(elem);
-			var size = $('<span class="file-size data">'+stats.size+' bytes</span>').appendTo(elem);
-			var download = $('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '" class="download-link data">Download</a>').appendTo(elem);
-			if (k.is_owner) {
-				var del = $('<a href="#" class="delete-link data" data-target="'+file+'">Delete</a>').click(function(e) {
-					e.preventDefault();
-					k.files.delete_file($(this).data('target'));
-					$(this).closest('.file').remove();
-				}).appendTo(elem);
+			if (stats.isFile()) { // Directories not working, yet
+				var elem = $('<div class="file"></div>');
+				var name = $('<span class="file-name">'+file+'</span>').appendTo(elem);
+				var size = $('<span class="file-size data">'+stats.size+' bytes</span>').appendTo(elem);
+				var download = $('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '" class="download-link data">Download</a>').appendTo(elem);
+				if (k.is_owner) {
+					var del = $('<a href="#" class="delete-link data" data-target="'+file+'">Delete</a>').click(function(e) {
+						e.preventDefault();
+						k.files.delete_file($(this).data('target'));
+						$(this).closest('.file').remove();
+					}).appendTo(elem);
+				}
+				$('#file-list').append(elem);
 			}
-			$('#file-list').append(elem);
 		});
 	}
 
