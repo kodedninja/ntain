@@ -19,15 +19,7 @@ function Updater() {
 
 	this.add_link = function() {
 		var header = $('header');
-		$('<a href="#" class="update-link">update available</a>').click(function(e) {
-			e.preventDefault();
-			k.updater.update();
-		}).appendTo(header);
-	}
-
-	this.update = function() {
-		// todo
-		$('.update-link').remove();
+		$('<a class="update-link">update available</a>').appendTo(header);
 	}
 
 	return this;
