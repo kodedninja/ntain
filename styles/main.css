@@ -50,11 +50,34 @@ a {
 	margin: 0px 40px 40px 0px;
 	background: #eee;
 	display: inline-block;
+	position: relative;
+}
+
+.file:hover .file-name {
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.data {
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.file:hover .data {
+	opacity: 1;
 }
 
 .file-name {
+	position: absolute;
+	top: 20px;
 	display: block;
+}
+
+.file-size {
+	display: block;
+	color: #999;
 	margin-bottom: 20px;
+	font-size: 13px;
 }
 
 .download-link {
