@@ -50,6 +50,10 @@ function Ntain() {
 
 		this.bigfile_download_el.href = 'files/' + file.name;
 		this.bigfile_download_el.setAttribute('download' , file.name);
+
+		if (file.name.match(/.(jpg|jpeg|png|gif)$/i)) {
+			this.bigfile_file_el.style.backgroundImage = 'url(files/' + file.name + ')';
+		}
 	}
 
 	this.close_bigfile = function(e) {

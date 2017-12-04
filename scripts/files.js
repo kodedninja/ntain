@@ -11,6 +11,9 @@ function Files(root) {
 			var stats = await t.archive.stat('/files/' + file);
 			if (stats.isFile()) { // Directories not working, yet
 				var elem = $('<div class="file"></div>');
+				if (file.match(/.(jpg|jpeg|png|gif)$/i)) {
+					elem[0].style.backgroundImage = 'url(files/' + file + ')';
+				}
 				var name = $('<span class="file-name">'+file+'</span>').appendTo(elem);
 				var size = $('<span class="file-size data">'+stats.size+' bytes</span>').appendTo(elem);
 				var download = $('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '" class="download-link data">Download</a>').appendTo(elem);

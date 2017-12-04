@@ -49,6 +49,9 @@ a { color: #000; }
 	background: #eee;
 	display: inline-block;
 	position: relative;
+
+	background-position: center;
+	background-size: cover;
 }
 
 .file:hover .file-name {
