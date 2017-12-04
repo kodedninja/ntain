@@ -1,11 +1,13 @@
 function Files(root) {
 	var t = this;
 	this.archive = new DatArchive(window.location.toString());
+	this.files = [];
 
 	this.show_files = async function() {
 		$('#file-list').empty();
 		var files = await t.archive.readdir('/files', {recursive: true});
-		files.forEach(async function(file) {
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
 			var stats = await t.archive.stat('/files/' + file);
 			if (stats.isFile()) { // Directories not working, yet
 				var elem = $('<div class="file"></div>');
@@ -20,8 +22,9 @@ function Files(root) {
 					}).appendTo(elem);
 				}
 				$('#file-list').append(elem);
+				k.files.files.push({name: file, stats: stats});
 			}
-		});
+		}
 	}
 
 	this.delete_file = async function(filename) {
@@ -80,6 +83,13 @@ function Files(root) {
 			body.addEventListener('dragleave',this.drag_leave,false);
 			body.addEventListener('drop',this.drop,false);
 		}
+	}
+
+	this.index_of_file = function(filename) {
+		for (var i = 0; i < this.files.length; i++) {
+			if (this.files[i].name == filename) return i;
+		}
+		return -1;
 	}
 
 	return this;
