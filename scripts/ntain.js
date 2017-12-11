@@ -1,4 +1,9 @@
 function Ntain() {
+	if (typeof DatArchive == 'undefined') {
+		window.location = window.location + 'files';
+		return null;
+	}
+
 	this.files = new Files();
 	this.version = null;
 	this.updater = new Updater();
