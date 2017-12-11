@@ -19,7 +19,7 @@ function Updater() {
 
 	this.add_link = function() {
 		var header = $('header');
-		$('<a class="update-link">update available</a>').appendTo(header);
+		$('<a class="update-link" href="https://github.com/kodedninja/ntain/releases">update available</a>').appendTo(header);
 	}
 
 	return this;
