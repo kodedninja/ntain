@@ -59,27 +59,30 @@ function Files(root) {
 
 	this.drop = function(e) {
 		e.preventDefault();
-	    var files = e.dataTransfer.files;
-	    if (files.length === 1) {
-	    	var file = files[0];
-	    	var type = file.type;
+	    var files = e.dataTransfer.files, file = null;
+		var i = 0;
 
-	        var reader = new FileReader();
-	        reader.onload = async function (e) {
-	          	var result = e.target.result;
-
-	          	await k.files.archive.writeFile('/files/' + file.name, result);
-	          	await k.files.archive.commit();
-				k.files.show_files();
-	        }
+		function next() {
+			file = files[i];
 	        reader.readAsArrayBuffer(file);
 		}
+
+		var reader = new FileReader();
+		reader.onload = async function (e) {
+			var result = e.target.result;
+			await k.files.archive.writeFile('/files/' + file.name, result);
+			await k.files.archive.commit();
+			k.files.show_files();
+			i++;
+			if (i < files.length) next();
+		}
+
+		next();
 		k.files.drag(false);
   	}
 
 	this.setup_owner = function() {
 		if (k.is_owner) {
-			console.log("owner");
 			var body = document.querySelectorAll('body')[0];
 			$(body).addClass('owner');
 			body.addEventListener('dragover',this.drag_over,false);
