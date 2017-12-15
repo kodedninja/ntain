@@ -24,6 +24,9 @@ function Files(root) {
 						$(this).closest('.file').remove();
 					}).appendTo(elem);
 				}
+				elem[0].addEventListener('click', function(e) {
+					k.bigfile({name: file, stats: stats});
+				});
 				$('#file-list').append(elem);
 				k.files.files.push({name: file, stats: stats});
 			}
