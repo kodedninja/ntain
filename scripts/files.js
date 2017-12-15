@@ -43,6 +43,13 @@ function Files(root) {
 					});
 					elem.appendChild(del);
 				}
+
+				elem.addEventListener('click', function(e) {
+					if (e.target.classList[0] == 'file') {
+						k.bigfile(k.files.files[k.files.index_of_file(e.target.children[0].innerHTML)]);
+					}
+				});
+
 				file_list.appendChild(elem);
 				k.files.files.push({name: file, stats: stats});
 			}

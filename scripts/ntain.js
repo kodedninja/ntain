@@ -14,6 +14,9 @@ function Ntain() {
 	this.bigfile_filename_el = document.createElement('span');
 	this.bigfile_download_el = document.createElement('a'); this.bigfile_download_el.innerHTML = 'Download'; this.bigfile_download_el.classList = 'download';
 
+	this.bigimage_el = document.getElementById('bigimage');
+	this.bigimage_image_el = document.createElement('img');
+
 	this.init = async function() {
 		this.setup_owner();
 		await this.files.show_files();
@@ -30,6 +33,8 @@ function Ntain() {
 		this.bigfile_file_el.appendChild(this.bigfile_download_el);
 		this.bigfile_el.appendChild(this.bigfile_file_el);
 
+		this.bigimage_el.appendChild(this.bigimage_image_el);
+
 		await this.files.version();
 		document.querySelector('.version').innerHTML = this.version;
 
@@ -45,24 +50,37 @@ function Ntain() {
 
 	this.bigfile = function(file) {
 		var body = document.getElementsByTagName('body')[0];
-		body.classList = "bigfilemode";
-
-		var close_button = document.querySelector('#bigfile .close-button');
-		close_button.addEventListener('click', this.close_bigfile);
-
-		//$('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '">Download</a>').appendTo(this.bigfile_file_el);
-		this.bigfile_filename_el.innerHTML = file.name;
-
-		this.bigfile_download_el.href = 'files/' + file.name;
-		this.bigfile_download_el.setAttribute('download' , file.name);
 
 		if (file.name.match(/.(jpg|jpeg|png|gif)$/i)) {
-			this.bigfile_file_el.style.backgroundImage = 'url(files/' + file.name + ')';
+		//	this.bigfile_file_el.style.backgroundImage = 'url(files/' + file.name + ')';
+			body.classList = 'bigimagemode';
+
+			var close_button = document.querySelector('#bigimage .close-button');
+			close_button.addEventListener('click', this.close_bigimage);
+		} else {
+			body.classList = "bigfilemode";
+
+			var close_button = document.querySelector('#bigfile .close-button');
+			close_button.addEventListener('click', this.close_bigfile);
+
+			//$('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '">Download</a>').appendTo(this.bigfile_file_el);
+			this.bigfile_filename_el.innerHTML = file.name;
+
+			this.bigfile_download_el.href = 'files/' + file.name;
+			this.bigfile_download_el.setAttribute('download' , file.name);
 		}
 	}
 
 	this.close_bigfile = function(e) {
 		var close_button = document.querySelector('#bigfile .close-button');
+		close_button.removeEventListener('click', this);
+
+		var body = document.getElementsByTagName('body')[0];
+		body.removeAttribute('class');
+	}
+
+	this.close_bigimage = function(e) {
+		var close_button = document.querySelector('#bigimage .close-button');
 		close_button.removeEventListener('click', this);
 
 		var body = document.getElementsByTagName('body')[0];
