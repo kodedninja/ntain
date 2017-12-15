@@ -120,6 +120,21 @@ a { color: #000; }
 	font-size: 20px;
 }
 
+#bigimage #gallery-left,
+#bigimage #gallery-right {
+	position: absolute;
+	cursor: pointer;
+	color: #fff;
+	text-decoration: none;
+	font-size: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 200px 50px;
+}
+
+#bigimage #gallery-left { left: 15px; }
+#bigimage #gallery-right { right: 15px; }
+
 #bigimage .close-button {
 	color: #fff;
 }

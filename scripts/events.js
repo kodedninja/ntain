@@ -1,12 +1,13 @@
 document.addEventListener('keydown', function(e) {
-
 	if (e.keyCode == 37) {
 		// left arrow
+		k.gallery_to_left();
 		return;
 	}
 
-	if (e.keyCode == 38) {
+	if (e.keyCode == 39) {
 		// right arrow
+		k.gallery_to_right();
 		return;
 	}
 
