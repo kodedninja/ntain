@@ -49,16 +49,15 @@ function Ntain() {
   	}
 
 	this.bigfile = function(file) {
-		var body = document.getElementsByTagName('body')[0];
-
 		if (file.name.match(/.(jpg|jpeg|png|gif)$/i)) {
-		//	this.bigfile_file_el.style.backgroundImage = 'url(files/' + file.name + ')';
-			body.classList = 'bigimagemode';
+			document.body.classList += ' bigimagemode';
 
 			var close_button = document.querySelector('#bigimage .close-button');
 			close_button.addEventListener('click', this.close_bigimage);
+
+			this.bigimage_image_el.src = 'files/' + file.name;
 		} else {
-			body.classList = "bigfilemode";
+			document.body.classList += " bigfilemode";
 
 			var close_button = document.querySelector('#bigfile .close-button');
 			close_button.addEventListener('click', this.close_bigfile);
@@ -75,16 +74,17 @@ function Ntain() {
 		var close_button = document.querySelector('#bigfile .close-button');
 		close_button.removeEventListener('click', this);
 
-		var body = document.getElementsByTagName('body')[0];
-		body.removeAttribute('class');
+
+		if (document.body.classList.value.indexOf('owner') != -1) document.body.classList = 'owner';
+		else document.body.removeAttribute('class');
 	}
 
 	this.close_bigimage = function(e) {
 		var close_button = document.querySelector('#bigimage .close-button');
 		close_button.removeEventListener('click', this);
 
-		var body = document.getElementsByTagName('body')[0];
-		body.removeAttribute('class');
+		if (document.body.classList.value.indexOf('owner') != -1) document.body.classList = 'owner';
+		else document.body.removeAttribute('class');
 	}
 
 	return this;
