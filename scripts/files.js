@@ -4,30 +4,46 @@ function Files(root) {
 	this.files = [];
 
 	this.show_files = async function() {
-		$('#file-list').empty();
+		var file_list = document.getElementById('file-list');
+		file_list.innerHTML = '';
 		var files = await t.archive.readdir('/files', {recursive: true});
 		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
 			var stats = await t.archive.stat('/files/' + file);
 			if (stats.isFile()) { // Directories not working, yet
-				var elem = $('<div class="file"></div>');
+				var elem = document.createElement('div');
+				elem.classList = 'file';
 				if (file.match(/.(jpg|jpeg|png|gif)$/i)) {
-					elem[0].style.backgroundImage = 'url(files/' + file + ')';
+					elem.style.backgroundImage = 'url(files/' + file + ')';
 				}
-				var name = $('<span class="file-name">'+file+'</span>').appendTo(elem);
-				var size = $('<span class="file-size data">'+stats.size+' bytes</span>').appendTo(elem);
-				var download = $('<a href="' + window.location.toString() + 'files/' + file + '" download="' + file + '" class="download-link data">Download</a>').appendTo(elem);
+				var name = document.createElement('span'); name.classList = 'file-name';
+				name.innerHTML = file;
+				elem.appendChild(name);
+
+				var size = document.createElement('span'); size.classList = 'file-size data';
+				size.innerHTML = stats.size + ' bytes';
+				elem.appendChild(size);
+
+				var download = document.createElement('a'); download.classList = 'download-link data';
+				download.innerHTML = 'Download';
+				download.href = window.location.toString().replace('#', '') + 'files/' + file;
+				download.setAttribute('download', file);
+				elem.appendChild(download);
+
 				if (k.is_owner) {
-					var del = $('<a href="#" class="delete-link data" data-target="'+file+'">Delete</a>').click(function(e) {
+					var del = document.createElement('a'); del.classList = 'delete-link data';
+					del.href = '#';
+					del.innerHTML = 'Delete';
+					del.setAttribute('data-target', file);
+					del.addEventListener('click', function(e) {
 						e.preventDefault();
-						k.files.delete_file($(this).data('target'));
-						$(this).closest('.file').remove();
-					}).appendTo(elem);
+						k.files.delete_file(this.getAttribute('data-target'));
+						var file_el = this.closest('.file');
+						file_el.parentNode.removeChild(file_el);
+					});
+					elem.appendChild(del);
 				}
-				elem[0].addEventListener('click', function(e) {
-					k.bigfile({name: file, stats: stats});
-				});
-				$('#file-list').append(elem);
+				file_list.appendChild(elem);
 				k.files.files.push({name: file, stats: stats});
 			}
 		}
