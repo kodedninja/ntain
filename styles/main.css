@@ -3,7 +3,6 @@ body {
 	background: #fff;
 	padding: 0;
 	margin: 0;
-	min-height: 200vh;
 }
 
 body.bigimagemode,
@@ -55,6 +54,7 @@ a { color: #000; }
 	max-height: calc(100vh - 30px);
 	height: auto;
 	width:auto;
+	border-radius: 3px;
 
 	margin-top: 50vh;
 	margin-left: 50%;
