@@ -60,9 +60,9 @@ function Files(root) {
 
 	this.drag = function(bool) {
       	if (bool) {
-        	$('body').addClass('drag')
+			document.body.classList = 'owner drag';
       	} else {
-        	$('body').removeClass('drag')
+			document.body.classList = 'owner';
       	}
     }
 
@@ -103,7 +103,7 @@ function Files(root) {
 	this.setup_owner = function() {
 		if (k.is_owner) {
 			var body = document.querySelectorAll('body')[0];
-			$(body).addClass('owner');
+			document.body.classList = 'owner';
 			body.addEventListener('dragover',this.drag_over,false);
 			body.addEventListener('dragleave',this.drag_leave,false);
 			body.addEventListener('drop',this.drop,false);

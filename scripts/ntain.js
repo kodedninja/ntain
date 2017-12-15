@@ -31,7 +31,7 @@ function Ntain() {
 		this.bigfile_el.appendChild(this.bigfile_file_el);
 
 		await this.files.version();
-		$('.version').text(this.version);
+		document.querySelector('.version').innerHTML = this.version;
 
 		if (k.is_owner) await this.updater.check();
 	}
