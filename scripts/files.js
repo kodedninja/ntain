@@ -14,7 +14,7 @@ function Files(root) {
 				var elem = document.createElement('div');
 				elem.classList = 'file';
 				if (file.match(/.(jpg|jpeg|png|gif)$/i)) {
-					elem.style.backgroundImage = 'url(files/' + file + ')';
+					elem.style.backgroundImage = 'url(files/' + encodeURI(file) + ')';
 				}
 				var name = document.createElement('span'); name.classList = 'file-name';
 				name.innerHTML = file;
