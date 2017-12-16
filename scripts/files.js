@@ -6,6 +6,7 @@ function Files(root) {
 	this.show_files = async function() {
 		var file_list = document.getElementById('file-list');
 		file_list.innerHTML = '';
+		this.files = [];
 		var files = await t.archive.readdir('/files', {recursive: true});
 		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
