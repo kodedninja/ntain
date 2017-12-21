@@ -156,6 +156,7 @@ a { color: #000; }
 	display: block;
 	z-index: 0;
 	transition: color 1s;
+	word-break: break-all;
 }
 
 .file.dark * {
