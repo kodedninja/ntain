@@ -14,12 +14,20 @@ function Files(root) {
 			if (stats.isFile()) { // Directories not working, yet
 				var elem = document.createElement('div');
 				elem.classList = 'file';
-				if (file.match(/.(jpg|jpeg|png|gif)$/i)) {
-					elem.style.backgroundImage = 'url(files/' + encodeURI(file) + ')';
-				}
+
 				var name = document.createElement('span'); name.classList = 'file-name';
 				name.innerHTML = file;
 				elem.appendChild(name);
+
+				if (file.match(/.(jpg|jpeg|png|gif)$/i)) {
+					elem.style.backgroundImage = 'url(files/' + encodeURI(file) + ')';
+
+					get_image_lightness('files/' + encodeURI(file), elem, function(el, b) {
+						if (b < 120) {
+							el.classList += ' dark';
+						}
+					});
+				}
 
 				var size = document.createElement('span'); size.classList = 'file-size data';
 				size.innerHTML = stats.size + ' bytes';
@@ -126,6 +134,44 @@ function Files(root) {
 	}
 
 	return this;
+}
+
+async function get_image_lightness(image_src, el, callback) {
+	// not the best function because every image is loaded twice
+	// it works for now
+	var h = 50;
+
+    var img = document.createElement("img");
+    img.src = image_src;
+    img.style.display = "none";
+    document.body.appendChild(img);
+
+    var colorSum = 0;
+
+    img.onload = function() {
+        var canvas = document.createElement("canvas");
+        canvas.width = this.width;
+        canvas.height = this.height;
+
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(this,0,0);
+
+        var imageData = ctx.getImageData(0,0,canvas.width,h);
+        var data = imageData.data;
+        var r,g,b,avg;
+
+        for(var x = 0, len = data.length; x < len; x+=4) {
+            r = data[x];
+            g = data[x+1];
+            b = data[x+2];
+
+            avg = Math.floor((r+g+b)/3);
+            colorSum += avg;
+        }
+
+        var brightness = Math.floor(colorSum / (this.width*h));
+        callback(el, brightness);
+    }
 }
 
 async function file_handler() {
